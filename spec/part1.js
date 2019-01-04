@@ -126,7 +126,11 @@
           iterations.push([letter, index]);
         });
 
-        expect(iterations).to.eql([ [ 'a', 0 ], [ 'b', 1 ], [ 'c', 2 ] ]);
+        expect(iterations).to.eql([
+          ['a', 0],
+          ['b', 1],
+          ['c', 2]
+        ]);
       });
 
       it('should iterate over arrays and provide access to the original collection', function() {
@@ -157,7 +161,11 @@
       });
 
       it('should iterate over objects and provide access to each value', function() {
-        var letters = {d: 'dog', e: 'elephant', f: 'flotsam'};
+        var letters = {
+          d: 'dog',
+          e: 'elephant',
+          f: 'flotsam'
+        };
         var iterations = [];
 
         _.each(letters, function(value) {
@@ -168,7 +176,11 @@
       });
 
       it('should iterate over objects and provide access to each key', function() {
-        var letters = {d: 'dog', e: 'elephant', f: 'flotsam'};
+        var letters = {
+          d: 'dog',
+          e: 'elephant',
+          f: 'flotsam'
+        };
         var iterations = [];
 
         _.each(letters, function(value, property) {
@@ -183,7 +195,11 @@
       });
 
       it('should iterate over objects and provide access to the original object', function() {
-        var letters = {d: 'dog', e: 'elephant', f: 'flotsam'};
+        var letters = {
+          d: 'dog',
+          e: 'elephant',
+          f: 'flotsam'
+        };
         var iterations = [];
 
         _.each(letters, function(value, property, object) {
@@ -198,7 +214,11 @@
       });
 
       it('should not confuse an object with a `length` property for an array', function() {
-        var dresser = { length: 39, width: 79, height: 127};
+        var dresser = {
+          length: 39,
+          width: 79,
+          height: 127
+        };
         var iterations = [];
 
         _.each(dresser, function(value, property, object) {
@@ -243,21 +263,27 @@
     describe('filter', function() {
 
       it('should return all even numbers in an array', function() {
-        var isEven = function(num) { return num % 2 === 0; };
+        var isEven = function(num) {
+          return num % 2 === 0;
+        };
         var evens = _.filter([1, 2, 3, 4, 5, 6], isEven);
 
         expect(evens).to.eql([2, 4, 6]);
       });
 
       it('should return all odd numbers in an array', function() {
-        var isOdd = function(num) { return num % 2 !== 0; };
+        var isOdd = function(num) {
+          return num % 2 !== 0;
+        };
         var odds = _.filter([1, 2, 3, 4, 5, 6], isOdd);
 
         expect(odds).to.eql([1, 3, 5]);
       });
 
       it('should produce a brand new array instead of modifying the input array', function() {
-        var isOdd = function(num) { return num % 2 !== 0; };
+        var isOdd = function(num) {
+          return num % 2 !== 0;
+        };
         var numbers = [1, 2, 3, 4, 5, 6];
         var evens = _.filter(numbers, isOdd);
 
@@ -268,21 +294,27 @@
     describe('reject', function() {
 
       it('should reject all even numbers', function() {
-        var isEven = function(num) { return num % 2 === 0; };
+        var isEven = function(num) {
+          return num % 2 === 0;
+        };
         var odds = _.reject([1, 2, 3, 4, 5, 6], isEven);
 
         expect(odds).to.eql([1, 3, 5]);
       });
 
       it('should reject all odd numbers', function() {
-        var isOdd = function(num) { return num % 2 !== 0; };
+        var isOdd = function(num) {
+          return num % 2 !== 0;
+        };
         var evens = _.reject([1, 2, 3, 4, 5, 6], isOdd);
 
         expect(evens).to.eql([2, 4, 6]);
       });
 
       it('should produce a brand new array instead of modifying the input array', function() {
-        var isOdd = function(num) { return num % 2 !== 0; };
+        var isOdd = function(num) {
+          return num % 2 !== 0;
+        };
         var numbers = [1, 2, 3, 4, 5, 6];
         var evens = _.reject(numbers, isOdd);
 
@@ -329,7 +361,9 @@
       });
 
       it('should handle iterators that work with a sorted array', function() {
-        var iterator = function(value) { return value === 1; };
+        var iterator = function(value) {
+          return value === 1;
+        };
         var numbers = [1, 2, 2, 3, 4, 4];
 
         expect(_.uniq(numbers)).to.eql([1, 2, 3, 4]);
@@ -377,7 +411,7 @@
       });
 
       it('should apply a function to every value in an array', function() {
-        var multiplyByTwo = function (x) {
+        var multiplyByTwo = function(x) {
           return x * 2;
         };
 
@@ -397,36 +431,52 @@
     describe('pluck', function() {
 
       it('should return values contained at a user-defined property', function() {
-        var people = [
-          { name: 'moe', age: 30 },
-          { name: 'curly', age: 50 }
-        ];
+        var people = [{
+          name: 'moe',
+          age: 30
+        }, {
+          name: 'curly',
+          age: 50
+        }];
 
         expect(_.pluck(people, 'name')).to.deep.eql(['moe', 'curly']);
       });
 
       it('should not modify the original array', function() {
-        var people = [
-          { name: 'moe', age: 30 },
-          { name: 'curly', age: 50 }
-        ];
+        var people = [{
+          name: 'moe',
+          age: 30
+        }, {
+          name: 'curly',
+          age: 50
+        }];
 
         _.pluck(people, 'name');
 
-        expect(people).to.deep.([{ name: 'moe', age: 30 }, { name: 'curly', age: 50 }]);
+        expect(people).to.deep.eql([{
+          name: 'moe',
+          age: 30
+        }, {
+          name: 'curly',
+          age: 50
+        }]);
       });
     });
 
     describe('reduce', function() {
 
       it('should return a value', function() {
-        var result = _.reduce([3, 2, 1], function(memo, item) { return item; });
+        var result = _.reduce([3, 2, 1], function(memo, item) {
+          return item;
+        });
         expect(result).to.be.defined;
       });
 
       it('should not mutate the input array', function() {
         var input = [1, 2, 3, 4, 5];
-        var result = _.reduce(input, function(memo, item) { return item; });
+        var result = _.reduce(input, function(memo, item) {
+          return item;
+        });
 
         /*
          * Mutation of inputs should be avoided without good justification otherwise
@@ -471,11 +521,11 @@
 
         _.reduce([1, 2, 3, 4], function(memo, item) {
 
-          // FILL_ME_IN
+          orderTraversed.push(item);
           // Add a line here that makes this test pass
           // for a working implementation of reduce
           return memo;
-        }, 10);
+        }, orderTraversed);
 
         expect(orderTraversed).to.eql([1, 2, 3, 4]);
       });
