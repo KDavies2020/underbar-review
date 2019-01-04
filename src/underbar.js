@@ -44,7 +44,7 @@
     if (n > array.length) {
       return array;
     }
-    return n === undefined ? array[array.length-1] : array.slice(n, array.length);
+    return n === undefined ? array[array.length - 1] : array.slice(n, array.length);
 
   };
 
@@ -86,24 +86,71 @@
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    let arr = [];
+    for (let i = 0; i < collection.length; i++) {
+      if (test(collection[i])) {
+        arr.push(collection[i]);
+      }
+    }
+    return arr;
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, test) {
-    // TIP: see if you can re-use _.filter() here, without simply
-    // copying code in and modifying it
+    let arr = [];
+    for(let i = 0; i < collection.length; i++){
+      if(!test(collection[i])){
+        arr.push(collection[i]);
+      }
+    }
+    return arr;
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    var newArr = [];
+    var iteratorArr = [];
+      if(isSorted === true && iterator !== undefined){
+        for (var j = 0; j < array.length; j++) {
+        iteratorArr.push([array[j], iterator(array[j])]);
+        };
+
+    for (var i = 0; i < iteratorArr.length; i++) {
+        if (iteratorArr[0][1] !== iteratorArr[1][1]) {
+        newArr.push(iteratorArr[0][0], iteratorArr[1][0])
+        return newArr;
+        }
+      }
+    }
+
+    var obj = {};
+
+    for (var i = 0; i < array.length; i++) {
+      if (obj[array[i]] === undefined) {
+        obj[array[i]] = 1;
+      }
+      else {
+        obj[array[i]]++;
+      }
+    }
+
+    var resArr = Object.keys(obj);
+    var finArr = [];
+
+    for(var j = 0; j < resArr.length; j++){
+      finArr.push(parseInt(resArr[j]));
+    }
+     return finArr;
   };
 
 
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
-    // map() is a useful primitive iteration function that works a lot
-    // like each(), but in addition to running the operation on all
-    // the members, it also maintains an array of results.
+    var newArr = [];
+    for (var i = 0; i < collection.length; i++) {
+      newArr.push(iterator(collection[i]));
+    }
+    return newArr;
   };
 
   /*

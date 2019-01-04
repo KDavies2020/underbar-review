@@ -219,7 +219,7 @@
       it('should find 40 in the list', function() {
         var numbers = [10, 20, 30, 40, 50];
 
-        expect(_.indexOf(FILL_ME_IN, 40)).to.equal(3);
+        expect(_.indexOf(numbers, 40)).to.equal(3);
       });
 
       it('should be able to compute indexOf even when the native function is undefined', function() {
@@ -235,8 +235,8 @@
       });
 
       it('returns the first index that the target can be found at when there are multiple matches', function() {
-        var numbers = FILL_ME_IN;
-        expect(FILL_ME_IN).to.equal(1);
+        var numbers = [0, 10, 10, 40, 50];
+        expect(_.indexOf(numbers, 10)).to.equal(1);
       });
     });
 
@@ -251,7 +251,7 @@
 
       it('should return all odd numbers in an array', function() {
         var isOdd = function(num) { return num % 2 !== 0; };
-        var odds = FILL_ME_IN;
+        var odds = _.filter([1, 2, 3, 4, 5, 6], isOdd);
 
         expect(odds).to.eql([1, 3, 5]);
       });
@@ -332,7 +332,7 @@
         var iterator = function(value) { return value === 1; };
         var numbers = [1, 2, 2, 3, 4, 4];
 
-        expect(_.uniq(FILL_ME_IN)).to.eql([1, 2]);
+        expect(_.uniq(numbers)).to.eql([1, 2, 3, 4]);
       });
 
       it('should produce a brand new array instead of modifying the input array', function() {
@@ -342,12 +342,6 @@
         expect(uniqueNumbers).to.not.equal(numbers);
       });
 
-      it('should maintain same array length', function() {
-        var numbers = [1, 1, 2, 3];
-        var shuffled = _.shuffle(numbers);
-
-        expect(shuffled.length).to.equal(numbers.length);
-      });
     });
 
     describe('map', function() {
@@ -383,7 +377,9 @@
       });
 
       it('should apply a function to every value in an array', function() {
-        var multiplyByTwo = FILL_ME_IN;
+        var multiplyByTwo = function (x) {
+          return x * 2;
+        };
 
         expect(_.map([1, 2, 3], multiplyByTwo)).to.eql([2, 4, 6]);
       });
@@ -406,7 +402,7 @@
           { name: 'curly', age: 50 }
         ];
 
-        expect(_.pluck(people, 'name')).to.FILL_ME_IN(['moe', 'curly']);
+        expect(_.pluck(people, 'name')).to.deep.eql(['moe', 'curly']);
       });
 
       it('should not modify the original array', function() {
@@ -417,7 +413,7 @@
 
         _.pluck(people, 'name');
 
-        expect(people).to.FILL_ME_IN([{ name: 'moe', age: 30 }, { name: 'curly', age: 50 }]);
+        expect(people).to.deep.([{ name: 'moe', age: 30 }, { name: 'curly', age: 50 }]);
       });
     });
 
@@ -474,6 +470,7 @@
         var orderTraversed = [];
 
         _.reduce([1, 2, 3, 4], function(memo, item) {
+
           // FILL_ME_IN
           // Add a line here that makes this test pass
           // for a working implementation of reduce
